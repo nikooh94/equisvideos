@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { UsersModule } from './modules/users/users.module'; // Importa esto
 
 @Module({
   imports: [
@@ -7,9 +8,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       type: 'sqlite',
       database: 'database.sqlite',
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
-      synchronize: true, // ¡Ojo! Solo para desarrollo, crea las tablas automáticamente
+      synchronize: true,
     }),
-    // Aquí iremos agregando nuestros módulos de Users, Auth y Movies
+    UsersModule,
   ],
 })
 export class AppModule { }
