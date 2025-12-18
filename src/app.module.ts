@@ -1,10 +1,15 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
-  imports: [],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [
+    TypeOrmModule.forRoot({
+      type: 'sqlite',
+      database: 'database.sqlite',
+      entities: [__dirname + '/**/*.entity{.ts,.js}'],
+      synchronize: true, // ¡Ojo! Solo para desarrollo, crea las tablas automáticamente
+    }),
+    // Aquí iremos agregando nuestros módulos de Users, Auth y Movies
+  ],
 })
-export class AppModule {}
+export class AppModule { }
