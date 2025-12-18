@@ -1,13 +1,13 @@
 import { Injectable, BadRequestException, Inject } from '@nestjs/common';
 import { User } from '../domain/user.entity';
-import { IUserRepository, USER_REPOSITORY } from '../domain/user.repository';
+import * as userRepository_1 from '../domain/user.repository';
 import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class RegisterUserUseCase {
     constructor(
-        @Inject(USER_REPOSITORY) // Inyectamos usando el Token del Puerto
-        private readonly userRepository: IUserRepository,
+        @Inject(userRepository_1.USER_REPOSITORY) // Inyectamos usando el Token del Puerto
+        private readonly userRepository: userRepository_1.IUserRepository,
     ) { }
 
     async execute(email: string, password: string, role: any): Promise<User> {
